@@ -1,5 +1,7 @@
+const fs = require('fs-extra');
+const path = require('path');
+const execa = require('execa')
 const { targets: allTargets } = require('./utils');
-console.log(allTargets);
 
 run();
 
@@ -7,8 +9,21 @@ async function run() {
   await buildAll(allTargets);
 }
 
-async function build() {
-  console.log('build...');
+async function build(target) {
+  const pkgDir = path.resolve(`packages/${target}`)
+  await fs.remove(`${pkgDir}/dist`)
+
+  await execa(
+    'rollup',
+    [
+      '-c',
+      '--environment',
+      [
+        `TARGET:${target}`,
+      ]
+    ],
+    { stdio: 'inherit' }
+  );
 }
 
 async function buildAll(targets) {
