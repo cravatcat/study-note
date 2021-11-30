@@ -3,8 +3,6 @@ const args = require('minimist')(process.argv.slice(2));
 
 const target = args.target;
 
-console.log(args);
-
 build(target);
 
 async function build(target) {

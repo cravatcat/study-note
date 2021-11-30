@@ -1,3 +1,5 @@
-let shared = 'shared';
+function isObject(obj) {
+  return typeof obj === 'object' && obj !== null;
+}
 
-export { shared };
+export { isObject };

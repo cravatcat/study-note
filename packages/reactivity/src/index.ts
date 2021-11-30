@@ -1,4 +1,7 @@
-import { shared } from '@wp/shared';
-let reactivity = 'reactivity';
-console.log(shared, 111);
-export { reactivity };
+import { reactive } from './reactive';
+import { effect } from './effect';
+
+export {
+  reactive,
+  effect
+}
